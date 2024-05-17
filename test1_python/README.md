@@ -5,3 +5,5 @@
 来源2：https://www.runoob.com/python/python-tutorial.html
 
 
+https://docs.python.org/zh-cn/3.10/
+https://pypi.org/
