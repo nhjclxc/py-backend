@@ -133,6 +133,69 @@ def test4(douban_all_movie_title, start = 0):
 
     pass
 
+import os
+
+# https://www.meitu131.com/meinv/
+# https://nanrenhome.cc/2047.html
+# https://www.tujigu.top/photo
+def test5():
+
+    base_url = 'https://www.tujigu.top'
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36'
+    }
+
+
+    # 获取第一页的所有tab
+    home_response = requests.get(base_url, headers=headers)
+    pussy_list = []
+    if home_response.ok:
+        html = home_response.text
+        soup = BeautifulSoup(html, 'html.parser')
+        # pussy_list = soup.findAll('h2 > a', attrs={'rel': 'bookmark'})
+        pussy_list = soup.select('h2 > a')
+        print(len(pussy_list))
+
+    for (index, pussy) in enumerate(pussy_list):
+        download_file(base_url, pussy['href'], headers, pussy.text)
+        if index > 3:
+            break
+
+    print('全部下载完成')
+
+
+def download_file(base_url, sub_url, headers, folder_name):
+    folder_name = 'pussy/' + folder_name
+    # 获取当前py文件的目录路径
+    current_directory = os.path.dirname(os.path.abspath(__file__))
+    # 组合目录路径和文件夹名称
+    test_folder_path = os.path.join(current_directory, folder_name)
+    # 检查test文件夹是否存在，如果不存在就创建它
+    if not os.path.exists(test_folder_path):
+        os.makedirs(test_folder_path)
+
+    response = requests.get(base_url+sub_url, headers=headers)
+    if response.ok:
+        html = response.text
+        soup = BeautifulSoup(html, 'html.parser')
+        img_list = soup.findAll('img', attrs={'class': 'img-fluid'})
+        for (index, img) in enumerate(img_list):
+            download_url = base_url + img['src']
+            # 发起GET请求获取文件内容
+            response = requests.get(download_url, stream=True)
+            filename = folder_name + '/' + str(index) + ".jpg"
+            print(filename)
+            # 确保请求成功
+            if response.status_code == 200:
+                with open(filename, 'wb') as f:
+                    # 以二进制写入模式打开文件，并逐块写入文件内容
+                    for chunk in response.iter_content(chunk_size=1024):
+                        if chunk:
+                            f.write(chunk)
+            if index > 3:
+                break
+    print(folder_name + '下载完成')
+
 
 if __name__ == '__main__':
 
@@ -142,11 +205,17 @@ if __name__ == '__main__':
 
     # test3()
 
-    douban_all_movie_title = []
-    test4(douban_all_movie_title)
-    print(len(douban_all_movie_title))
+    # douban_all_movie_title = []
+    # test4(douban_all_movie_title)
+    # print(len(douban_all_movie_title))
     # for title in douban_all_movie_title:
     #     print(title)
+
+    # from urllib.parse import quote
+    # print(quote('IMiss爱蜜社 2023.06.14 Vol.734 九月生'))
+    # print(url)
+
+    test5()
 
 
 

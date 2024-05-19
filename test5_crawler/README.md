@@ -8,7 +8,8 @@
 # 安装
 1. requests ```pip install requests```
 2. bs4 ```pip install bs4```
-
+3. xpath ```https://chromewebstore.google.com/detail/xpath-helper/hgimnogjllphhhkhlmebbmlgjoejdpjl?hl=zh-CN&utm_source=ext_sidebar```
+4. xmlx ```pip install lxml ‐i https://pypi.douban.com/simple```
 
 # 使用步骤
 1. 指定url
@@ -17,3 +18,6 @@
 4. 解析数据
 5. 数据分析
 6. 持久化数据
+
+# 检查某个网站的哪些页面允许被爬虫
+    domain/robots.txt
