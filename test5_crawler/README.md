@@ -3,7 +3,9 @@
     https://www.bilibili.com/video/BV1d54y1g7db/
 ## test2
     https://www.bilibili.com/video/BV1Db4y1m7Ho?p=51
-百度网盘下载：https://pan.baidu.com/s/15RVioBZssHv7ePhlHrchtQ ，提取码：yyds 
+    百度网盘下载：https://pan.baidu.com/s/15RVioBZssHv7ePhlHrchtQ ，提取码：yyds 
+    bs4教程：https://beautifulsoup.cn/、https://beautiful-soup-4.readthedocs.io/en/latest/
+    requests教程：https://requests.readthedocs.io/projects/cn/zh-cn/latest/
 
 # 安装
 1. requests ```pip install requests```
