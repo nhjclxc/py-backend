@@ -43,7 +43,7 @@ def test1():
     # print(r.json())
     print(type(r.json()))
 
-    # 下载二级制文件
+    # 下载二级制文件 下载图片
     img_url = 'https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png'
     response = requests.get(img_url)
     # 检查请求是否成功
